@@ -19,6 +19,13 @@
   <property name="windowTitle">
    <string>Salarios</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="recursos.qrc">
+    <normaloff>:/Recursos/cheque-de-pago.png</normaloff>:/Recursos/cheque-de-pago.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(233, 198, 130);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout_2">
     <item>
@@ -38,6 +45,9 @@
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
         <widget class="QWidget" name="widget_3" native="true">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(233, 175, 130);</string>
+         </property>
          <layout class="QFormLayout" name="formLayout">
           <item row="0" column="0">
            <widget class="QLabel" name="label">
@@ -48,6 +58,9 @@
           </item>
           <item row="0" column="1">
            <widget class="QLineEdit" name="inNombre">
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
+            </property>
             <property name="placeholderText">
              <string>Ingrese el nombre</string>
             </property>
@@ -61,13 +74,20 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QSpinBox" name="inHoras"/>
+           <widget class="QSpinBox" name="inHoras">
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
        </item>
        <item>
         <widget class="QGroupBox" name="groupBox">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(233, 175, 130);</string>
+         </property>
          <property name="title">
           <string>Jornada</string>
          </property>
@@ -117,6 +137,9 @@
           </item>
           <item>
            <widget class="QPushButton" name="btnCalcular">
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(233, 175, 130);</string>
+            </property>
             <property name="text">
              <string>&amp;Calcular</string>
             </property>
@@ -152,6 +175,9 @@
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
         <widget class="QPlainTextEdit" name="outCalculos">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -197,6 +223,10 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionNuevo">
+   <property name="icon">
+    <iconset resource="recursos.qrc">
+     <normaloff>:/Recursos/sitio-web.png</normaloff>:/Recursos/sitio-web.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Nuevo</string>
    </property>
@@ -205,6 +235,10 @@
    </property>
   </action>
   <action name="actionAbrir">
+   <property name="icon">
+    <iconset resource="recursos.qrc">
+     <normaloff>:/Recursos/abrir.png</normaloff>:/Recursos/abrir.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Abrir</string>
    </property>
@@ -213,6 +247,10 @@
    </property>
   </action>
   <action name="actionGuardar">
+   <property name="icon">
+    <iconset resource="recursos.qrc">
+     <normaloff>:/Recursos/salvar.png</normaloff>:/Recursos/salvar.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Guardar</string>
    </property>
@@ -221,6 +259,10 @@
    </property>
   </action>
   <action name="actionCalcular">
+   <property name="icon">
+    <iconset resource="recursos.qrc">
+     <normaloff>:/Recursos/calculadora.png</normaloff>:/Recursos/calculadora.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Calcular</string>
    </property>
@@ -229,6 +271,10 @@
    </property>
   </action>
   <action name="actionSalir">
+   <property name="icon">
+    <iconset resource="recursos.qrc">
+     <normaloff>:/Recursos/salida.png</normaloff>:/Recursos/salida.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Salir</string>
    </property>
@@ -237,11 +283,17 @@
    </property>
   </action>
   <action name="actionAcerca_de">
+   <property name="icon">
+    <iconset resource="recursos.qrc">
+     <normaloff>:/Recursos/ayuda.png</normaloff>:/Recursos/ayuda.png</iconset>
+   </property>
    <property name="text">
     <string>Acerca de Salarios</string>
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="recursos.qrc"/>
+ </resources>
  <connections/>
 </ui>
