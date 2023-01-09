@@ -15,21 +15,36 @@ Salarios::~Salarios()
     delete ui;
 }
 
-
 void Salarios::on_btnCalcular_clicked()
 {
     calcular();
 }
 
-
 void Salarios::on_actionNuevo_triggered()
 {
-    // Limpiar widgets
-    limpiar();
-    // Limpiar el texto de los calculos
-    ui->outCalculos->clear();
-    // Mostrar mensaje en la barra de estado
-    ui->statusbar->showMessage("Nuevos cálculos de salario.", 3000);
+    QString informacion = ui->outCalculos->toPlainText();
+
+    if(informacion.isEmpty()){
+        // Limpiar widgets
+        limpiar();
+        // Limpiar el texto de los calculos
+        ui->outCalculos->clear();
+        // Mostrar mensaje en la barra de estado
+        ui->statusbar->showMessage("Nuevos cálculos de salario.", 3000);
+
+    }else {
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Pregunta", "Desea guardar la información?",
+                QMessageBox::Save | QMessageBox::Cancel);
+        if(reply == QMessageBox::Save){
+            on_actionGuardar_triggered();
+        }
+        if(reply == QMessageBox::Cancel){
+            limpiar();
+            ui->outCalculos->clear();
+            ui->statusbar->showMessage("Nuevos cálculos de salario.", 3000);
+       }
+    }
 }
 
 void Salarios::limpiar()
@@ -67,33 +82,48 @@ void Salarios::calcular()
         // Muestra los resultados
         ui->outCalculos->appendPlainText(m_contolador->getDatos());
     } else {
-        QMessageBox::critical(
-                    this,
-                    "Error",
-                    "No se puede calcular el salario.");
+        QMessageBox::critical(this, "Error","No se puede calcular el salario.");
     }
     // Limpiar widgets
     limpiar();
     // Mostrar mensaje en la barra de estado
     ui->statusbar->showMessage("Salario de " + nombre + " calculado.",5000);
-
 }
-
 
 void Salarios::on_actionCalcular_triggered()
 {
     calcular();
 }
 
-
 void Salarios::on_actionSalir_triggered()
 {
-    this->close();
-}
+    QString informacion = ui->outCalculos->toPlainText();
 
+    if(informacion.isEmpty()){
+        this->close();
+
+    }else {
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Pregunta", "Desea guardar la información?",
+                QMessageBox::Save | QMessageBox::Close);
+        if(reply == QMessageBox::Save){
+            on_actionGuardar_triggered();
+        }
+        if(reply == QMessageBox::Close){
+            this->close();
+        }
+    }
+}
 
 void Salarios::on_actionGuardar_triggered()
 {
+    QString informacion = ui->outCalculos->toPlainText();
+
+    if(informacion.isEmpty()){
+        QMessageBox::warning(this, "Advertencia", "No se han ingresado datos para guardar");
+        return;
+    }
+
     // Abrir un cuadro de diálogo para seleccionar el path y archivo a guardar
     QString nombreArchivo = QFileDialog::getSaveFileName(this,
                                                    "Guardar calculos de salarios",
@@ -113,14 +143,9 @@ void Salarios::on_actionGuardar_triggered()
         archivo.close();
     }else {
         // Mensaje de error
-        QMessageBox::warning(this,
-                             "Guardar archivo",
-                             "No se puede acceder al archivo para guardar los datos.");
+        QMessageBox::warning(this, "Guardar archivo", "No se puede acceder al archivo para guardar los datos.");
     }
-
-
 }
-
 
 void Salarios::on_actionAcerca_de_triggered()
 {
@@ -132,9 +157,7 @@ void Salarios::on_actionAcerca_de_triggered()
     dialog->exec();
     // Luego de cerrar la ventana, se acceden a los datos de la misma
     qDebug() << dialog->valor();
-
 }
-
 
 void Salarios::on_actionAbrir_triggered()
 {
